@@ -1,10 +1,12 @@
 FROM microsoft/mssql-tools
 LABEL maintainer="Marcus Sullivan from TIBrasil.net"
-COPY ./dbaccess /totvs/dbaccess
+COPY ./SOURCE/dbaccesslinux /totvs/dbaccess
+COPY ./odbc.ini /etc/odbc.ini
 COPY ./dbaccess.ini /totvs/dbaccess/dbaccess.ini
 COPY ./init.sh /totvs/dbaccess/init.sh
 EXPOSE 7890
 USER root
+RUN chmod -R 755 /totvs/dbaccess
 WORKDIR /totvs/dbaccess
 RUN /totvs/dbaccess/init.sh
 ENTRYPOINT [ "/totvs/dbaccess/dbaccess64" ]

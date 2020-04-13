@@ -1,11 +1,11 @@
-ALTER DATABASE [p12127] SET OFFLINE WITH ROLLBACK IMMEDIATE
-USE [master] RESTORE DATABASE [p12127] FROM  DISK = '/tmp/p12127.bak' WITH  FILE = 1,  
-    --MOVE N'DADOSLLXMR_Data' TO N'E:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\p12127.mdf',  
-    --MOVE N'DADOSLLXMR_Log' TO N'E:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\p12127_log.ldf',  
+--ALTER DATABASE [dadosadv] SET OFFLINE WITH ROLLBACK IMMEDIATE
+USE [master] RESTORE DATABASE [dadosadv] FROM  DISK = '/tmp/p12127.bak' WITH  FILE = 1,  
+    --MOVE N'P12127_Data' TO N'/var/opt/mssql/data/dadosadv.mdf',  
+    --MOVE N'P12127_Log' TO N'/var/opt/mssql/data/dadosadv_log.ldf',  
     NOUNLOAD,  REPLACE,  STATS = 5
-USE [p12127] exec sp_changedbowner siga
-USE [master] ALTER DATABASE [p12127] SET RECOVERY SIMPLE WITH NO_WAIT
---USE [p12127] DBCC SHRINKFILE (N'DADOSLLXMR_Log' , 0, TRUNCATEONLY)
+USE [dadosadv] exec sp_changedbowner siga
+--USE [master] ALTER DATABASE [dadosadv] SET RECOVERY SIMPLE WITH NO_WAIT
+--USE [dadosadv] DBCC SHRINKFILE (N'DADOSLLXMR_Log' , 0, TRUNCATEONLY)
 
 
 

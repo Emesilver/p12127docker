@@ -1,1 +1,1 @@
-Protheus 12.1.23 totalmente funcional utilizando docker com banco de dados mssql.
+Protheus 12.1.27 totalmente funcional utilizando docker com banco de dados mssql.

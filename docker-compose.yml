@@ -19,4 +19,15 @@ services:
     environment:
       SA_PASSWORD: "P@ssw0rd2020"
       ACCEPT_EULA: "Y"
-      
+
+  dbaccess:
+    container_name: dbaccess
+    build: 
+      ./dbaccess
+    volumes:
+      - ./dbaccess/odbc.ini:/etc/odbc.ini
+      - ./dbaccess/dbaccess.ini:/totvs/dbaccess/dbaccess.ini
+    ports: 
+      - 7890:7890
+    depends_on: 
+      - mssql
