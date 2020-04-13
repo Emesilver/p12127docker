@@ -1,0 +1,8 @@
+FROM microsoft/mssql-tools
+LABEL maintainer="Marcus Sullivan from TIBrasil.net (sullivan@tibrasil.net)"
+COPY ./totvslic /totvs/totvslic
+EXPOSE 5555
+USER root
+WORKDIR /totvs/totvslic
+RUN /totvs/totvslic/init.sh
+ENTRYPOINT [ "/totvs/totvslic/bin/appserver/appsrvlinux" ]

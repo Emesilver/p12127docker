@@ -1,0 +1,10 @@
+FROM microsoft/mssql-tools
+LABEL maintainer="Marcus Sullivan from TIBrasil.net"
+COPY ./appserver /totvs/protheus/bin/appserver
+COPY ./appserver.ini /totvs/protheus/bin/appserver/appserver.ini 
+EXPOSE 1234
+USER root
+WORKDIR /totvs/protheus
+ENTRYPOINT [ "/totvs/protheus/bin/appserver/appsrvlinux" ]
+
+

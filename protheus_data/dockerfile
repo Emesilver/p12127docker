@@ -1,0 +1,8 @@
+FROM microsoft/mssql-tools
+LABEL maintainer="Marcus Sullivan from TIBrasil.net"
+COPY ./protheus_data /totvs/protheus/protheus_data
+USER root
+WORKDIR /totvs/protheus
+
+
+
