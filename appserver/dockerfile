@@ -1,10 +1,18 @@
 FROM microsoft/mssql-tools
-LABEL maintainer="Marcus Sullivan from TIBrasil.net"
-COPY ./appserver /totvs/protheus/bin/appserver
-COPY ./appserver.ini /totvs/protheus/bin/appserver/appserver.ini 
+LABEL maintainer="Marcus Sullivan from TIBrasil.net (sullivan@tibrasil.net)"
+COPY ./SOURCE/apo /totvs/protheus/apo
+COPY ./SOURCE/appserver /totvs/protheus/bin/appserver
+COPY ./SOURCE/protheus_data /totvs/protheus/protheus_data
 EXPOSE 1234
+EXPOSE 8079
 USER root
 WORKDIR /totvs/protheus
+RUN PATH=/usr/sbin:$PATH; export PATH
+RUN LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.; export LD_LIBRARY_PATH
+RUN ulimit -n 65536
+RUN ulimit -s 1024
+RUN ulimit -c unlimited
+RUN ulimit -f unlimited
+RUN ulimit -v unlimited
+RUN cp -rfv /totvs/protheus/bin/appserver/*.so /usr/lib/
 ENTRYPOINT [ "/totvs/protheus/bin/appserver/appsrvlinux" ]
-
-
