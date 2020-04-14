@@ -14,12 +14,13 @@ services:
       - ./mssql/odbc.ini:/etc/odbc.ini
     ports:
       - 1433:1433
-    healthcheck:
-      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@ssw0rd2019' -d Master -i /mssql/checkdb.sql
     environment:
       SA_PASSWORD: "P@ssw0rd2020"
       ACCEPT_EULA: "Y"
-
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P P@ssw0rd2020 -d Master -i /mssql/checkdb.sql
+      #/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P P@ssw0rd2020 -d Master -i /mssql/checkdb.sql
+  
   totvslic:
     container_name: totvslic
     build: 
