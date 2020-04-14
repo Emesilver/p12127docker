@@ -23,8 +23,9 @@ services:
   
   totvslic:
     container_name: totvslic
-    build: 
-      ./totvslic
+    #build: 
+      #./totvslic
+    image: "msullivancm/totvslic:20200413"
     volumes:
       - ./totvslic/appserver.ini:/totvs/totvslic/bin/appserver/appserver.ini
       - ./totvslic/licenseserver.ini:/totvs/totvslic/bin/appserver/licenseserver.ini
@@ -35,8 +36,9 @@ services:
     
   dbaccess:
     container_name: dbaccess
-    build: 
-      ./dbaccess
+    #build: 
+      #./dbaccess
+    image: "msullivancm/dbaccess:20200413"
     volumes:
       - ./dbaccess/odbc.ini:/etc/odbc.ini
       - ./dbaccess/dbaccess.ini:/totvs/dbaccess/dbaccess.ini
@@ -48,8 +50,9 @@ services:
 
   protheus:
     container_name: protheus
-    build: 
-      ./appserver
+    #build: 
+      #./appserver
+    image: "msullivancm/protheus:20200413"
     volumes:
       - ./appserver/appserver.ini:/totvs/protheus/bin/appserver/appserver.ini
     ports: 
