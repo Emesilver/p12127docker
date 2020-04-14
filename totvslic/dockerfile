@@ -1,8 +1,12 @@
 FROM microsoft/mssql-tools
 LABEL maintainer="Marcus Sullivan from TIBrasil.net (sullivan@tibrasil.net)"
-COPY ./totvslic /totvs/totvslic
+COPY ./SOURCE/totvslic /totvs/totvslic
+COPY ./init.sh /totvs/totvslic/init.sh
+COPY ./appserver.ini /totvs/totvslic/bin/appserver/appserver.ini
+COPY ./licenseserver.ini /totvs/totvslic/bin/appserver/licenseserver.ini
 EXPOSE 5555
 USER root
 WORKDIR /totvs/totvslic
+RUN cp -rfv /totvs/totvslic/bin/appserver/*.so /usr/lib/
 RUN /totvs/totvslic/init.sh
 ENTRYPOINT [ "/totvs/totvslic/bin/appserver/appsrvlinux" ]

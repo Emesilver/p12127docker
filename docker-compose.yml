@@ -20,6 +20,18 @@ services:
       SA_PASSWORD: "P@ssw0rd2020"
       ACCEPT_EULA: "Y"
 
+  totvslic:
+    container_name: totvslic
+    build: 
+      ./totvslic
+    volumes:
+      - ./totvslic/appserver.ini:/totvs/totvslic/bin/appserver/appserver.ini
+      - ./totvslic/licenseserver.ini:/totvs/totvslic/bin/appserver/licenseserver.ini
+    ports: 
+      - 5555:5555
+      - 2234:2234
+      
+    
   dbaccess:
     container_name: dbaccess
     build: 
@@ -31,6 +43,7 @@ services:
       - 7890:7890
     depends_on: 
       - mssql
+      - totvslic
 
   protheus:
     container_name: protheus
@@ -43,3 +56,4 @@ services:
       - 8079:8079
     depends_on: 
       - dbaccess
+      - totvslic
